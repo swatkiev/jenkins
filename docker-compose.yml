@@ -1,0 +1,21 @@
+# Версия docker-compose
+version: '3'
+# Список наших сервисов (контейнеров)
+services:
+    jenkins:
+      # используем последний стабильный образ jenkins
+        image: jenkins/jenkins:lts
+      # restart: always
+        # маршрутизируем порты
+        ports:
+            - "8080:8080"
+        # монтируем директории, слева директории на основной машине, справа - куда они монтируются в контейнере
+        volumes:
+            - jenkins_home:/var/jenkins_home
+# Список volumes:
+volumes:
+    jenkins_home:
+
+# docker pull jenkins/jenkins:lts
+# docker run --detach --restart="always" --publish 8080:8080 --volume jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins:lts
+# docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
