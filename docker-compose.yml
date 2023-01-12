@@ -5,6 +5,7 @@ services:
     jenkins:
       # используем последний стабильный образ jenkins
         image: jenkins/jenkins:lts
+        container_name: jenkins
       # restart: always
         # маршрутизируем порты
         ports:
